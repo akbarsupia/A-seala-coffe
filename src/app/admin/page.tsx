@@ -505,7 +505,7 @@ export default function AdminPage() {
       {/* Modal Tambah/Edit Produk */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-md animate-in fade-in duration-300">
-           <div className="bg-white w-full max-w-lg rounded-[2.5rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border border-white/20 flex flex-col max-h-[90vh]">
+            <div className="bg-white w-full max-w-lg rounded-[2rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border border-white/20 flex flex-col max-h-[95vh] my-auto">
              <div className="bg-primary p-6 md:p-7 text-white flex justify-between items-center relative overflow-hidden shrink-0">
                 <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/black-paper.png')]"></div>
                 <div className="relative z-10">
@@ -516,8 +516,7 @@ export default function AdminPage() {
                   <span className="material-symbols-outlined text-lg">close</span>
                 </button>
              </div>
-             
-             <form onSubmit={handleSave} className="p-6 md:p-7 space-y-5 bg-stone-50 overflow-y-auto custom-scrollbar">
+                          <form onSubmit={handleSave} className="p-5 md:p-6 space-y-4 bg-stone-50 overflow-y-auto custom-scrollbar">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Nama Menu */}
                   <div className="space-y-2">
@@ -533,9 +532,9 @@ export default function AdminPage() {
                 </div>
 
                 {/* Deskripsi */}
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">Deskripsi Menu</label>
-                  <textarea required value={formData.desc} onChange={e => setFormData({...formData, desc: e.target.value})} className="w-full px-5 py-4 bg-white border border-stone-200 rounded-2xl outline-none focus:border-primary transition-all text-sm font-medium text-stone-800 placeholder:text-stone-300 min-h-[100px] resize-none" placeholder="Tuliskan cita rasa unik dari menu ini..." />
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-bold text-stone-500 uppercase tracking-widest pl-1">Deskripsi Menu</label>
+                  <textarea required value={formData.desc} onChange={e => setFormData({...formData, desc: e.target.value})} className="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl outline-none focus:border-primary transition-all text-xs font-medium text-stone-800 placeholder:text-stone-300 min-h-[80px] resize-none" placeholder="Tuliskan cita rasa..." />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -565,21 +564,20 @@ export default function AdminPage() {
                 </div>
 
                 {/* Upload Foto */}
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">Foto Menu</label>
-                  <div className="flex items-center gap-6 bg-white p-5 rounded-2xl border-2 border-dashed border-stone-200 group hover:border-primary transition-colors">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-bold text-stone-500 uppercase tracking-widest pl-1">Foto Menu</label>
+                  <div className="flex items-center gap-4 bg-white p-4 rounded-xl border border-dashed border-stone-200">
                     {formData.img ? (
-                      <div className="h-20 w-20 rounded-xl overflow-hidden relative shadow-lg flex-shrink-0 animate-in zoom-in duration-300">
+                      <div className="h-14 w-14 rounded-lg overflow-hidden relative shadow-md shrink-0">
                         <Image src={formData.img} alt="Preview" fill className="object-cover" />
                       </div>
                     ) : (
-                      <div className="h-20 w-20 rounded-xl bg-stone-50 flex flex-col items-center justify-center text-stone-300 flex-shrink-0 border border-stone-100">
-                        <span className="material-symbols-outlined text-4xl">image</span>
+                      <div className="h-14 w-14 rounded-lg bg-stone-50 flex items-center justify-center text-stone-300 shrink-0 border border-stone-100">
+                        <span className="material-symbols-outlined text-xl">image</span>
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="text-[10px] text-stone-400 font-medium mb-3">Rekomendasi ukuran: 800x800px. Maksimal 2MB (WebP).</p>
-                      <input type="file" accept="image/*" onChange={handleFileChange} className="block w-full text-xs text-stone-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:bg-primary file:text-white hover:file:bg-on-primary-container cursor-pointer" />
+                      <input type="file" accept="image/*" onChange={handleFileChange} className="block w-full text-[10px] text-stone-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[9px] file:font-bold file:bg-primary file:text-white cursor-pointer" />
                     </div>
                   </div>
                 </div>
