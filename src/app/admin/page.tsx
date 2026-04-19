@@ -502,17 +502,106 @@ export default function AdminPage() {
         </div>
       </main>
 
-      {/* Modals same as before */}
+      {/* Modal Tambah/Edit Produk */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-stone-900/40 backdrop-blur-sm animate-in fade-in duration-300">
-           <div className="bg-white w-full max-w-lg rounded-[2.5rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
-             <div className="bg-primary p-8 text-white flex justify-between items-center"><h3 className="text-xl font-headline font-bold">{editingProduct ? 'Edit Menu' : 'New Elixir'}</h3><button onClick={() => setIsModalOpen(false)}><span className="material-symbols-outlined">close</span></button></div>
-             <form onSubmit={handleSave} className="p-10 space-y-6">
-                <input required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full px-4 py-3 bg-stone-50 rounded-xl outline-none" placeholder="Name" />
-                <input required type="number" value={formData.price || ''} onChange={e => setFormData({...formData, price: parseInt(e.target.value) || 0})} className="w-full px-4 py-3 bg-stone-50 rounded-xl outline-none" placeholder="Price" />
-                <textarea required value={formData.desc} onChange={e => setFormData({...formData, desc: e.target.value})} className="w-full px-4 py-3 bg-stone-50 rounded-xl outline-none min-h-[100px]" placeholder="Description" />
-                <div className="flex items-center gap-4 bg-stone-50 p-4 rounded-xl border-2 border-dashed border-stone-200">{formData.img && <div className="h-12 w-12 rounded-lg overflow-hidden relative"><Image src={formData.img} alt="P" fill className="object-cover" unoptimized/></div>}<input type="file" accept="image/*" onChange={handleFileChange} className="text-xs" /></div>
-                <button type="submit" className="w-full py-5 bg-primary text-white rounded-2xl font-bold uppercase text-xs shadow-xl">{editingProduct ? 'Update Ritual' : 'Manifest Content'}</button>
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-md animate-in fade-in duration-300">
+           <div className="bg-white w-full max-w-xl rounded-[2.5rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border border-white/20">
+             <div className="bg-primary p-8 md:p-10 text-white flex justify-between items-center relative overflow-hidden">
+                <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/black-paper.png')]"></div>
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-headline font-bold">{editingProduct ? 'Edit Menu Kopi' : 'Tambah Menu Baru'}</h3>
+                  <p className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-60 mt-1">Lengkapi Detail Produk</p>
+                </div>
+                <button onClick={() => setIsModalOpen(false)} className="relative z-10 h-10 w-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+                  <span className="material-symbols-outlined">close</span>
+                </button>
+             </div>
+             
+             <form onSubmit={handleSave} className="p-8 md:p-10 space-y-8 bg-stone-50">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Nama Menu */}
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">Nama Menu</label>
+                    <input required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full px-5 py-4 bg-white border border-stone-200 rounded-2xl outline-none focus:border-primary transition-all text-sm font-medium text-stone-800 placeholder:text-stone-300" placeholder="Contoh: Kopi Susu Aren" />
+                  </div>
+                  
+                  {/* Harga */}
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">Harga (IDR)</label>
+                    <input required type="number" value={formData.price || ''} onChange={e => setFormData({...formData, price: parseInt(e.target.value) || 0})} className="w-full px-5 py-4 bg-white border border-stone-200 rounded-2xl outline-none focus:border-primary transition-all text-sm font-medium text-stone-800 placeholder:text-stone-300" placeholder="35000" />
+                  </div>
+                </div>
+
+                {/* Deskripsi */}
+                <div className="space-y-2">
+                  <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">Deskripsi Menu</label>
+                  <textarea required value={formData.desc} onChange={e => setFormData({...formData, desc: e.target.value})} className="w-full px-5 py-4 bg-white border border-stone-200 rounded-2xl outline-none focus:border-primary transition-all text-sm font-medium text-stone-800 placeholder:text-stone-300 min-h-[100px] resize-none" placeholder="Tuliskan cita rasa unik dari menu ini..." />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                   {/* Kategori */}
+                   <div className="space-y-2">
+                      <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">Kategori</label>
+                      <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full px-5 py-4 bg-white border border-stone-200 rounded-2xl outline-none focus:border-primary transition-all text-sm font-bold text-primary cursor-pointer appearance-none">
+                         <option value="celestial">Kopi Surgawi (Celestial)</option>
+                         <option value="ancient">Menu Klasik (Ancient)</option>
+                         <option value="noncoffee">Non-Kopi (Refreshers)</option>
+                         <option value="food">Makanan (Bites)</option>
+                      </select>
+                   </div>
+
+                   {/* Featured Switch */}
+                   <div className="space-y-2">
+                      <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">Tampilkan di Beranda?</label>
+                      <button 
+                        type="button"
+                        onClick={() => setFormData({...formData, featured: !formData.featured})}
+                        className={`w-full flex items-center justify-between px-5 py-4 border rounded-2xl transition-all ${formData.featured ? 'bg-primary/5 border-primary text-primary' : 'bg-white border-stone-200 text-stone-400'}`}
+                      >
+                         <span className="text-xs font-bold uppercase tracking-wider">{formData.featured ? 'Menu Unggulan' : 'Menu Biasa'}</span>
+                         <span className="material-symbols-outlined">{formData.featured ? 'check_circle' : 'circle'}</span>
+                      </button>
+                   </div>
+                </div>
+
+                {/* Upload Foto */}
+                <div className="space-y-2">
+                  <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">Foto Menu</label>
+                  <div className="flex items-center gap-6 bg-white p-5 rounded-2xl border-2 border-dashed border-stone-200 group hover:border-primary transition-colors">
+                    {formData.img ? (
+                      <div className="h-20 w-20 rounded-xl overflow-hidden relative shadow-lg flex-shrink-0 animate-in zoom-in duration-300">
+                        <Image src={formData.img} alt="Preview" fill className="object-cover" unoptimized/>
+                      </div>
+                    ) : (
+                      <div className="h-20 w-20 rounded-xl bg-stone-50 flex flex-col items-center justify-center text-stone-300 flex-shrink-0 border border-stone-100">
+                        <span className="material-symbols-outlined text-4xl">image</span>
+                      </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[10px] text-stone-400 font-medium mb-3">Rekomendasi ukuran: 800x800px. Maksimal 2MB (WebP).</p>
+                      <input type="file" accept="image/*" onChange={handleFileChange} className="block w-full text-xs text-stone-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:bg-primary file:text-white hover:file:bg-on-primary-container cursor-pointer" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <button 
+                  type="submit" 
+                  disabled={isCompressing}
+                  className="w-full py-5 bg-primary text-white rounded-[2rem] font-bold uppercase text-[10px] tracking-[0.3em] shadow-xl shadow-primary/20 hover:bg-stone-900 transition-all active:scale-95 disabled:opacity-50 mt-4 h-16 flex items-center justify-center gap-2"
+                >
+                  {isCompressing ? (
+                    <>
+                      <span className="material-symbols-outlined animate-spin text-sm">refresh</span>
+                      Mengolah Gambar...
+                    </>
+                  ) : (
+                    <>
+                      <span className="material-symbols-outlined text-sm">{editingProduct ? 'update' : 'add_circle'}</span>
+                      {editingProduct ? 'Update Menu Caffe' : 'Simpan Menu Sekarang'}
+                    </>
+                  )}
+                </button>
              </form>
           </div>
         </div>
