@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { seedProducts } from '@/lib/seedFirestore';
 import { adminAuth } from '@/lib/firebase-admin';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: Request) {
   try {
     // 🛡️ SECURITY: Only Admin can seed
