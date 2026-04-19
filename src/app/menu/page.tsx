@@ -107,6 +107,13 @@ export default function MenuPage() {
   const { t, formatPrice } = useLanguage();
 
   React.useEffect(() => {
+    // 🛡️ SAFETY CHECK: If db is not initialized, don't crash
+    if (!db) {
+      console.warn("Database not initialized: Missing Firebase configuration.");
+      setLoading(false);
+      return;
+    }
+
     const q = query(collection(db, 'products'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const productList = snapshot.docs.map(doc => ({
