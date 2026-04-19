@@ -34,8 +34,17 @@ export default function Navbar() {
     <nav className="fixed top-0 w-full z-[100] glass-navbar">
       <div className="flex justify-between items-center px-6 md:px-12 h-[80px] w-full max-w-screen-2xl mx-auto">
         {/* Logo */}
-        <Link href="/" className="font-headline italic text-xl md:text-2xl text-primary hover:opacity-100 transition-opacity">
-          A&apos;seala Caffe
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className="relative w-8 h-8 md:w-10 md:h-10 group-hover:scale-110 transition-transform duration-300">
+            <img 
+              src="/logo.png" 
+              alt="A'seala Caffe Logo" 
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <span className="font-headline italic text-xl md:text-2xl text-primary hover:opacity-100 transition-opacity">
+            A&apos;seala Caffe
+          </span>
         </Link>
 
         {/* Desktop Nav Links */}
