@@ -14,11 +14,18 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase (singleton pattern for Next.js)
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const db = getFirestore(app);
-const auth = getAuth(app);
+let app;
+let db: any;
+let auth: any;
+let analytics: any;
 
-// Analytics runs only on the client side
-const analytics = typeof window !== "undefined" ? isSupported().then(yes => yes ? getAnalytics(app) : null) : null;
+if (firebaseConfig.apiKey) {
+  app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+  db = getFirestore(app);
+  auth = getAuth(app);
+  
+  // Analytics runs only on the client side
+  analytics = typeof window !== "undefined" ? isSupported().then(yes => yes ? getAnalytics(app) : null) : null;
+}
 
 export { app, db, auth, analytics };
