@@ -116,8 +116,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [user, resetTimer]);
 
   useEffect(() => {
+    // 🛡️ SAFETY CHECK: If auth is not initialized (missing ENVs), don't crash
+    if (!auth) {
+      console.warn("Auth not initialized: Missing Firebase configuration.");
+      setLoading(false);
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
+        // 🛡️ SAFETY CHECK: If db is not initialized
+        if (!db) {
+          setUser({
+            uid: firebaseUser.uid,
+            name: firebaseUser.displayName || 'User',
+            email: firebaseUser.email,
+            role: 'customer'
+          });
+          setLoading(false);
+          return;
+        }
+
         // 🛡️ SECURITY: Fetch role from the SECURE Firestore (protected by rules)
         const userDocRef = doc(db, 'users', firebaseUser.uid);
         const userDoc = await getDoc(userDocRef);
@@ -135,7 +154,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         } 
         
         // 🔒 Fallback security: Still recognize hardcoded admin email for safety
-        // but prioritize the role from the (now secured) database
         if (firebaseUser.email === 'akbarsupiad20@gmail.com') {
           userData.role = 'admin';
         }
