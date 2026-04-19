@@ -14,7 +14,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase (singleton pattern for Next.js)
-let app;
+let app: any;
 let db: any;
 let auth: any;
 let analytics: any;
