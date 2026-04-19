@@ -424,7 +424,7 @@ export default function AdminPage() {
                         analytics.topProducts.map((p, i) => (
                           <div key={i} className="flex items-center gap-5 group">
                              <div className="h-16 w-16 rounded-2xl overflow-hidden relative border border-primary/5 shrink-0">
-                                {p.img ? <Image src={p.img} alt={p.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" unoptimized /> : <div className="w-full h-full bg-stone-100 flex items-center justify-center text-stone-300"><span className="material-symbols-outlined">coffee</span></div>}
+                                {p.img ? <Image src={p.img} alt={p.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500"     /> : <div className="w-full h-full bg-stone-100 flex items-center justify-center text-stone-300"><span className="material-symbols-outlined">coffee</span></div>}
                                 <div className="absolute top-0 left-0 bg-stone-800 text-white text-[9px] font-bold w-6 h-6 flex items-center justify-center rounded-br-xl">#{i+1}</div>
                              </div>
                              <div className="min-w-0 flex-1">
@@ -493,7 +493,7 @@ export default function AdminPage() {
           {activeTab === 'products' && (
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">{products.map(item => (
               <div key={item.id} className="bg-white p-5 rounded-[2rem] shadow-sm border border-primary/5 group">
-                <div className="h-48 w-full rounded-2xl overflow-hidden relative mb-4"><Image src={item.img} alt={item.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" unoptimized /></div>
+                <div className="h-48 w-full rounded-2xl overflow-hidden relative mb-4"><Image src={item.img} alt={item.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" /></div>
                 <h5 className="font-bold text-stone-800">{item.name}</h5><p className="font-bold text-primary mt-4">{formatPrice(item.price)}</p>
                 <div className="mt-6 flex gap-2"><button onClick={() => handleOpenModal(item)} className="p-3 bg-stone-50 rounded-xl hover:bg-stone-200"><span className="material-symbols-outlined text-sm">edit</span></button><button onClick={() => handleDelete(item.id)} className="p-3 bg-red-50 text-red-500 rounded-xl hover:bg-red-500 hover:text-white"><span className="material-symbols-outlined text-sm">delete</span></button></div>
               </div>
