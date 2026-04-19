@@ -1,0 +1,37 @@
+# Firebase App Hosting configuration file.
+# Learn more at https://firebase.google.com/docs/app-hosting/configure
+
+kind: "AppHostingYaml"
+apiVersion: "v1beta"
+
+# Environment variables for the application
+env:
+  - variable: NEXT_PUBLIC_MIDTRANS_CLIENT_KEY
+    value: "Mid-client-Vn61Ku-mzyz9B3An"
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    value: "AIzaSyBhFGKCsQ1iL40X_N0m-WPkidddtTmw_kc"
+  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    value: "a-seala-coffe.firebaseapp.com"
+  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    value: "a-seala-coffe"
+  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    value: "a-seala-coffe.firebasestorage.app"
+  - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+    value: "620311753237"
+  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+    value: "1:620311753237:web:8c185062f6bc68c752541c"
+  - variable: NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+    value: "G-Y6H2RL1ER0"
+  - variable: FIREBASE_CLIENT_EMAIL
+    value: "firebase-adminsdk-fbsvc@a-seala-coffe.iam.gserviceaccount.com"
+  - variable: SMTP_USER
+    value: "akbarsupiad20@gmail.com"
+  
+  # Secrets mapped from Cloud Secret Manager
+  # Note: These must be created in the Firebase Console / GCP Secret Manager
+  - variable: MIDTRANS_SERVER_KEY
+    secret: MIDTRANS_SERVER_KEY
+  - variable: FIREBASE_PRIVATE_KEY
+    secret: FIREBASE_PRIVATE_KEY
+  - variable: SMTP_PASS
+    secret: SMTP_PASS

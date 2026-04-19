@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* === Colors (Earth & Light) === */
+  --color-primary:                   #735a3e;
+  --color-primary-container:         #f5f1ed;
+  --color-on-primary-container:      #5c452b;
+  --color-surface:                   #faf9f6;
+  --color-on-surface:                #1a1c1a;
+  --color-surface-variant:           #efeeeb;
+  --color-outline:                   #d1c5b8;
+  --color-error:                     #ba1a1a;
+
+  /* Typography Balanced */
+  --font-headline: 'Noto Serif', serif;
+  --font-body:     'Manrope', sans-serif;
+
+  /* Spacing Scale */
+  --spacing-navbar: 80px;
+
+  /* Corners */
+  --radius-xl: 2.5rem;
+  --radius-lg: 1.5rem;
+  --radius-md: 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Material Symbols - Fix Selection */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
 }
 
+/* Smooth Body */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-surface);
+  color: #4d453c;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
+
+/* Fix Global Navbar Padding */
+.pt-navbar {
+  padding-top: var(--spacing-navbar);
+}
+
+/* Typography Refinement */
+h1, h2, h3, h4 {
+  font-family: var(--font-headline);
+  letter-spacing: -0.02em;
+}
+
+.glass-navbar {
+  background: rgba(250, 249, 246, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(115, 90, 62, 0.08);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Trik contrast-ratio untuk teks gelap di atas kaca buram cerah */
+.text-glow-light {
+  text-shadow: 0 1px 12px rgba(255, 255, 255, 1), 0 0 4px rgba(255, 255, 255, 0.9);
+}
+
+/* Shadow for Depth */
+.shadow-soft {
+  box-shadow: 0 20px 40px -15px rgba(115, 90, 62, 0.1);
+}
+
+/* Responsive Image Container */
+.img-container {
+  overflow: hidden;
+  position: relative;
+  background: var(--color-surface-variant);
+  border-radius: var(--radius-lg);
+}
+
+.img-container img {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
