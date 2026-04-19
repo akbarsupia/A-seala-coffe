@@ -505,100 +505,67 @@ export default function AdminPage() {
       {/* Modal Tambah/Edit Produk */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-md animate-in fade-in duration-300">
-            <div className="bg-white w-full max-w-lg rounded-[2rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border border-white/20 flex flex-col max-h-[95vh] my-auto">
-             <div className="bg-primary p-6 md:p-7 text-white flex justify-between items-center relative overflow-hidden shrink-0">
-                <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/black-paper.png')]"></div>
-                <div className="relative z-10">
-                  <h3 className="text-xl md:text-2xl font-headline font-bold">{editingProduct ? 'Edit Menu Kopi' : 'Tambah Menu Baru'}</h3>
-                  <p className="text-[9px] uppercase tracking-[0.3em] font-bold opacity-60 mt-0.5">Lengkapi Detail Produk</p>
+           <div className="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border border-white/20 flex flex-col max-h-[85vh]">
+             <div className="bg-primary p-4 md:p-5 text-white flex justify-between items-center shrink-0">
+                <div>
+                  <h3 className="text-lg font-headline font-bold">Kelola Menu</h3>
+                  <p className="text-[8px] uppercase tracking-widest opacity-60">Lengkapi data produk</p>
                 </div>
-                <button onClick={() => setIsModalOpen(false)} className="relative z-10 h-9 w-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
-                  <span className="material-symbols-outlined text-lg">close</span>
+                <button onClick={() => setIsModalOpen(false)} className="h-8 w-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20">
+                  <span className="material-symbols-outlined text-sm">close</span>
                 </button>
              </div>
-                          <form onSubmit={handleSave} className="p-5 md:p-6 space-y-4 bg-stone-50 overflow-y-auto custom-scrollbar">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Nama Menu */}
-                  <div className="space-y-2">
-                    <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">Nama Menu</label>
-                    <input required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full px-5 py-4 bg-white border border-stone-200 rounded-2xl outline-none focus:border-primary transition-all text-sm font-medium text-stone-800 placeholder:text-stone-300" placeholder="Contoh: Kopi Susu Aren" />
+             
+             <form onSubmit={handleSave} className="p-4 md:p-5 space-y-4 bg-stone-50 overflow-y-auto">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-[9px] font-bold text-stone-400 uppercase pl-1">Nama Menu</label>
+                    <input required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full px-3 py-2.5 bg-white border border-stone-200 rounded-xl text-xs font-medium outline-none focus:border-primary" placeholder="Kopi..." />
                   </div>
-                  
-                  {/* Harga */}
-                  <div className="space-y-2">
-                    <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">Harga (IDR)</label>
-                    <input required type="number" value={formData.price || ''} onChange={e => setFormData({...formData, price: parseInt(e.target.value) || 0})} className="w-full px-5 py-4 bg-white border border-stone-200 rounded-2xl outline-none focus:border-primary transition-all text-sm font-medium text-stone-800 placeholder:text-stone-300" placeholder="35000" />
+                  <div className="space-y-1">
+                    <label className="text-[9px] font-bold text-stone-400 uppercase pl-1">Harga (IDR)</label>
+                    <input required type="number" value={formData.price || ''} onChange={e => setFormData({...formData, price: parseInt(e.target.value) || 0})} className="w-full px-3 py-2.5 bg-white border border-stone-200 rounded-xl text-xs font-medium outline-none focus:border-primary" placeholder="35000" />
                   </div>
                 </div>
 
-                {/* Deskripsi */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-stone-500 uppercase tracking-widest pl-1">Deskripsi Menu</label>
-                  <textarea required value={formData.desc} onChange={e => setFormData({...formData, desc: e.target.value})} className="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl outline-none focus:border-primary transition-all text-xs font-medium text-stone-800 placeholder:text-stone-300 min-h-[80px] resize-none" placeholder="Tuliskan cita rasa..." />
+                <div className="space-y-1">
+                  <label className="text-[9px] font-bold text-stone-400 uppercase pl-1">Deskripsi Singkat</label>
+                  <textarea required value={formData.desc} onChange={e => setFormData({...formData, desc: e.target.value})} className="w-full px-3 py-2 bg-white border border-stone-200 rounded-xl text-xs outline-none focus:border-primary min-h-[60px] resize-none" placeholder="Cita rasa..." />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                   {/* Kategori */}
-                   <div className="space-y-2">
-                      <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">Kategori</label>
-                      <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full px-5 py-4 bg-white border border-stone-200 rounded-2xl outline-none focus:border-primary transition-all text-sm font-bold text-primary cursor-pointer appearance-none">
-                         <option value="celestial">Kopi Surgawi (Celestial)</option>
-                         <option value="ancient">Menu Klasik (Ancient)</option>
-                         <option value="noncoffee">Non-Kopi (Refreshers)</option>
-                         <option value="food">Makanan (Bites)</option>
+                <div className="grid grid-cols-2 gap-4">
+                   <div className="space-y-1">
+                      <label className="text-[9px] font-bold text-stone-400 uppercase pl-1">Kategori</label>
+                      <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full px-3 py-2.5 bg-white border border-stone-200 rounded-xl text-[10px] font-bold text-primary outline-none">
+                         <option value="celestial">Signature</option>
+                         <option value="ancient">Klasik</option>
+                         <option value="noncoffee">Non-Kopi</option>
+                         <option value="food">Makanan</option>
                       </select>
                    </div>
-
-                   {/* Featured Switch */}
-                   <div className="space-y-2">
-                      <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">Tampilkan di Beranda?</label>
-                      <button 
-                        type="button"
-                        onClick={() => setFormData({...formData, featured: !formData.featured})}
-                        className={`w-full flex items-center justify-between px-5 py-4 border rounded-2xl transition-all ${formData.featured ? 'bg-primary/5 border-primary text-primary' : 'bg-white border-stone-200 text-stone-400'}`}
-                      >
-                         <span className="text-xs font-bold uppercase tracking-wider">{formData.featured ? 'Menu Unggulan' : 'Menu Biasa'}</span>
-                         <span className="material-symbols-outlined">{formData.featured ? 'check_circle' : 'circle'}</span>
+                   <div className="space-y-1">
+                      <label className="text-[9px] font-bold text-stone-400 uppercase pl-1">Unggulan?</label>
+                      <button type="button" onClick={() => setFormData({...formData, featured: !formData.featured})} className={`w-full flex items-center justify-between px-3 py-2.5 border rounded-xl transition-all ${formData.featured ? 'bg-primary/5 border-primary text-primary' : 'bg-white border-stone-200 text-stone-400'}`}>
+                         <span className="text-[9px] font-bold uppercase">{formData.featured ? 'YA' : 'TIDAK'}</span>
+                         <span className="material-symbols-outlined text-sm">{formData.featured ? 'check_circle' : 'circle'}</span>
                       </button>
                    </div>
                 </div>
 
-                {/* Upload Foto */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-stone-500 uppercase tracking-widest pl-1">Foto Menu</label>
-                  <div className="flex items-center gap-4 bg-white p-4 rounded-xl border border-dashed border-stone-200">
+                <div className="space-y-1">
+                  <label className="text-[9px] font-bold text-stone-400 uppercase pl-1">Foto Menu</label>
+                  <div className="flex items-center gap-3 bg-white p-3 rounded-xl border border-dashed border-stone-200">
                     {formData.img ? (
-                      <div className="h-14 w-14 rounded-lg overflow-hidden relative shadow-md shrink-0">
-                        <Image src={formData.img} alt="Preview" fill className="object-cover" />
-                      </div>
+                      <div className="h-12 w-12 rounded-lg overflow-hidden relative shadow-sm shrink-0"><Image src={formData.img} alt="P" fill className="object-cover" /></div>
                     ) : (
-                      <div className="h-14 w-14 rounded-lg bg-stone-50 flex items-center justify-center text-stone-300 shrink-0 border border-stone-100">
-                        <span className="material-symbols-outlined text-xl">image</span>
-                      </div>
+                      <div className="h-12 w-12 rounded-lg bg-stone-50 flex items-center justify-center text-stone-200 shrink-0"><span className="material-symbols-outlined text-lg">image</span></div>
                     )}
-                    <div className="flex-1 min-w-0">
-                      <input type="file" accept="image/*" onChange={handleFileChange} className="block w-full text-[10px] text-stone-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[9px] file:font-bold file:bg-primary file:text-white cursor-pointer" />
-                    </div>
+                    <input type="file" accept="image/*" onChange={handleFileChange} className="block w-full text-[9px] text-stone-400 file:mr-2 file:py-1 file:px-2 file:rounded-full file:border-0 file:text-[8px] file:font-bold file:bg-primary file:text-white" />
                   </div>
                 </div>
 
-                {/* Submit Button */}
-                <button 
-                  type="submit" 
-                  disabled={isCompressing}
-                  className="w-full py-5 bg-primary text-white rounded-[2rem] font-bold uppercase text-[10px] tracking-[0.3em] shadow-xl shadow-primary/20 hover:bg-stone-900 transition-all active:scale-95 disabled:opacity-50 mt-4 h-16 flex items-center justify-center gap-2"
-                >
-                  {isCompressing ? (
-                    <>
-                      <span className="material-symbols-outlined animate-spin text-sm">refresh</span>
-                      Mengolah Gambar...
-                    </>
-                  ) : (
-                    <>
-                      <span className="material-symbols-outlined text-sm">{editingProduct ? 'update' : 'add_circle'}</span>
-                      {editingProduct ? 'Update Menu Caffe' : 'Simpan Menu Sekarang'}
-                    </>
-                  )}
+                <button type="submit" disabled={isCompressing} className="w-full py-3.5 bg-primary text-white rounded-2xl font-bold uppercase text-[10px] tracking-[0.2em] shadow-lg hover:bg-stone-900 transition-all flex items-center justify-center gap-2">
+                  {isCompressing ? 'Memproses...' : (editingProduct ? 'Update Menu' : 'Simpan Menu Baru')}
                 </button>
              </form>
           </div>
