@@ -53,7 +53,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Container - Responsive aspect ratio */}
           <div className="relative aspect-video lg:aspect-[4/5] rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl">
-             <Image src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800" alt="Coffee Craft" fill className="object-cover" unoptimized />
+             <Image src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800" alt="Coffee Craft" fill className="object-cover" />
           </div>
           
           <div className="space-y-12">
@@ -119,16 +119,16 @@ export default function AboutPage() {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="aspect-[3/4] rounded-3xl overflow-hidden relative group">
-               <Image src="/gallery-1.png" alt="Cafe 1" fill className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
+               <Image src="/gallery-1.png" alt="Cafe 1" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
             </div>
             <div className="aspect-square rounded-3xl overflow-hidden relative mt-8 group">
-               <Image src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&q=80&w=400" alt="Cafe 2" fill className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
+               <Image src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&q=80&w=400" alt="Cafe 2" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
             </div>
             <div className="aspect-[3/4] rounded-3xl overflow-hidden relative group">
-               <Image src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=400" alt="Cafe 3" fill className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
+               <Image src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=400" alt="Cafe 3" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
             </div>
             <div className="aspect-square rounded-3xl overflow-hidden relative mt-12 group">
-               <Image src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400" alt="Cafe 4" fill className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
+               <Image src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400" alt="Cafe 4" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
             </div>
           </div>
         </div>

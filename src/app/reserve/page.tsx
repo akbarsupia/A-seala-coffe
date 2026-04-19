@@ -201,7 +201,7 @@ export default function ReservePage() {
                       onClick={() => setSelectedSpace(key as any)}
                       className={`group relative overflow-hidden rounded-2xl border-2 transition-all text-left block ${isSelected ? 'border-primary' : 'border-transparent hover:border-primary/20'}`}
                     >
-                      <Image src={img} alt={title} width={400} height={200} className="w-full h-40 object-cover opacity-90 transition-transform group-hover:scale-105" unoptimized />
+                      <Image src={img} alt={title} width={400} height={200} className="w-full h-40 object-cover opacity-90 transition-transform group-hover:scale-105" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5">
                         <span className="text-white text-xs font-bold uppercase tracking-widest">{title}</span>
                       </div>
@@ -299,7 +299,7 @@ export default function ReservePage() {
             </div>
             
             <div className="relative rounded-3xl overflow-hidden aspect-square shadow-lg">
-               <Image src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=800" alt="Cafe details" fill className="object-cover" unoptimized />
+               <Image src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=800" alt="Cafe details" fill className="object-cover" />
             </div>
           </div>
         </div>

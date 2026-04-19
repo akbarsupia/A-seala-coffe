@@ -57,7 +57,6 @@ export default function HomePage() {
             className="object-cover opacity-[0.08] scale-100"
             priority
             sizes="100vw"
-            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface" />
         </div>
@@ -109,7 +108,6 @@ export default function HomePage() {
               fill
               className="object-cover object-[center_45%] transition-transform duration-1000 group-hover:scale-105 opacity-[0.85]"
               sizes="(max-width: 768px) 100vw, 50vw"
-              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 text-white md:bottom-8 md:left-8 md:right-8">
@@ -122,7 +120,7 @@ export default function HomePage() {
 
           {/* Beans Image (Portrait) */}
           <div className="md:col-span-3 relative rounded-3xl overflow-hidden min-h-[250px] md:min-h-0">
-            <Image src={SHOTS.beans} alt="Coffee beans" fill className="object-cover group-hover:scale-105 transition-transform duration-1000" sizes="(max-width: 768px) 100vw, 25vw" unoptimized />
+            <Image src={SHOTS.beans} alt="Coffee beans" fill className="object-cover group-hover:scale-105 transition-transform duration-1000" sizes="(max-width: 768px) 100vw, 25vw" />
           </div>
 
           {/* ROASTS Text Card (Portrait) */}
@@ -146,7 +144,7 @@ export default function HomePage() {
       <section className="bg-primary-container/40 py-20 rounded-[3rem] mx-4 md:mx-10 mb-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="relative aspect-video md:aspect-square w-full rounded-2xl overflow-hidden shadow-2xl">
-            <Image src={SHOTS.vessel} alt="The Vessel" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" unoptimized />
+            <Image src={SHOTS.vessel} alt="The Vessel" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
           </div>
           <div className="space-y-6 md:space-y-8">
             <h2 className="text-4xl md:text-6xl text-primary leading-tight font-headline">
@@ -195,7 +193,7 @@ export default function HomePage() {
           ].map((item) => (
             <div key={item.name} className="snap-center w-[210px] md:w-[320px] flex-shrink-0 group">
               <div className="aspect-square rounded-2xl overflow-hidden mb-4 bg-surface-container-high relative">
-                <Image src={item.img} alt={item.name} fill className="object-cover object-[center_75%] group-hover:scale-110 transition-transform duration-1000" sizes="210px" unoptimized />
+                <Image src={item.img} alt={item.name} fill className="object-cover object-[center_75%] group-hover:scale-110 transition-transform duration-1000" sizes="210px" />
                 <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-primary">
                   {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(parseInt(item.price))}
                 </div>
@@ -275,7 +273,7 @@ export default function HomePage() {
             'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=600',
           ].map((url, i) => (
             <div key={i} className="aspect-square relative rounded-2xl overflow-hidden group">
-              <Image src={url} alt={`Instagram highlight ${i+1}`} fill className="object-cover group-hover:scale-110 transition-transform duration-700" sizes="(max-width: 768px) 50vw, 25vw" unoptimized />
+              <Image src={url} alt={`Instagram highlight ${i+1}`} fill className="object-cover group-hover:scale-110 transition-transform duration-700" sizes="(max-width: 768px) 50vw, 25vw" />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <span className="material-symbols-outlined text-white !text-[32px]">favorite</span>
               </div>
