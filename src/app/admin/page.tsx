@@ -457,7 +457,7 @@ export default function AdminPage() {
                       </div>
                    </div>
                    <div className="flex flex-col justify-center items-center text-center p-8 bg-white/5 rounded-3xl border border-white/10">
-                      <Image src="/images/aseala_cafe.png" alt="Aseala" width={120} height={120} className="mb-6 opacity-80" unoptimized />
+                      <Image src="/images/aseala_cafe.png" alt="Aseala" width={120} height={120} className="mb-6 opacity-80" />
                       <h5 className="text-lg font-headline font-bold mb-2">Semangat Barista!</h5>
                       <p className="text-sm text-white/50 leading-relaxed italic">&quot;Setiap cangkir yang Anda buat adalah alasan seseorang tersenyum.&quot;</p>
                    </div>
@@ -505,8 +505,8 @@ export default function AdminPage() {
       {/* Modal Tambah/Edit Produk */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-md animate-in fade-in duration-300">
-           <div className="bg-white w-full max-w-xl rounded-[2.5rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border border-white/20">
-             <div className="bg-primary p-8 md:p-10 text-white flex justify-between items-center relative overflow-hidden">
+           <div className="bg-white w-full max-w-lg rounded-[2.5rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border border-white/20">
+             <div className="bg-primary p-6 md:p-8 text-white flex justify-between items-center relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/black-paper.png')]"></div>
                 <div className="relative z-10">
                   <h3 className="text-2xl font-headline font-bold">{editingProduct ? 'Edit Menu Kopi' : 'Tambah Menu Baru'}</h3>
@@ -517,7 +517,7 @@ export default function AdminPage() {
                 </button>
              </div>
              
-             <form onSubmit={handleSave} className="p-8 md:p-10 space-y-8 bg-stone-50">
+             <form onSubmit={handleSave} className="p-6 md:p-8 space-y-6 bg-stone-50">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Nama Menu */}
                   <div className="space-y-2">
@@ -570,7 +570,7 @@ export default function AdminPage() {
                   <div className="flex items-center gap-6 bg-white p-5 rounded-2xl border-2 border-dashed border-stone-200 group hover:border-primary transition-colors">
                     {formData.img ? (
                       <div className="h-20 w-20 rounded-xl overflow-hidden relative shadow-lg flex-shrink-0 animate-in zoom-in duration-300">
-                        <Image src={formData.img} alt="Preview" fill className="object-cover" unoptimized/>
+                        <Image src={formData.img} alt="Preview" fill className="object-cover" />
                       </div>
                     ) : (
                       <div className="h-20 w-20 rounded-xl bg-stone-50 flex flex-col items-center justify-center text-stone-300 flex-shrink-0 border border-stone-100">
