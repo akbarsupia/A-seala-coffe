@@ -234,7 +234,11 @@ function LoginForm() {
         setError(lang === 'id' ? 'Jendela login ditutup. Silakan coba lagi.' : 'Login window closed. Please try again.');
       } else {
         setError(lang === 'id' ? 'Gagal masuk dengan Google. Silakan coba lagi.' : 'Failed to sign in with Google. Please try again.');
-        console.error('Google Auth error:', err);
+        console.error('Google Auth Full Error:', {
+          code: err.code,
+          message: err.message,
+          domain: window.location.hostname
+        });
       }
       setIsLoading(false);
     } 

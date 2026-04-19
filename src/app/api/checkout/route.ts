@@ -94,7 +94,16 @@ export async function POST(request: Request) {
     });
 
   } catch (error: any) {
-    console.error('Checkout Error:', error);
+    console.error('CRITICAL CHECKOUT ERROR:', {
+      message: error.message,
+      code: error.code,
+      stack: error.stack,
+      env_check: {
+        has_server_key: !!process.env.MIDTRANS_SERVER_KEY,
+        has_private_key: !!process.env.FIREBASE_PRIVATE_KEY,
+        has_email: !!process.env.FIREBASE_CLIENT_EMAIL
+      }
+    });
     return NextResponse.json(
       { error: 'Failed to create transaction', details: error.message },
       { status: 500 }
