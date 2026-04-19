@@ -505,19 +505,19 @@ export default function AdminPage() {
       {/* Modal Tambah/Edit Produk */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-md animate-in fade-in duration-300">
-           <div className="bg-white w-full max-w-lg rounded-[2.5rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border border-white/20">
-             <div className="bg-primary p-6 md:p-8 text-white flex justify-between items-center relative overflow-hidden">
+           <div className="bg-white w-full max-w-lg rounded-[2.5rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border border-white/20 flex flex-col max-h-[90vh]">
+             <div className="bg-primary p-6 md:p-7 text-white flex justify-between items-center relative overflow-hidden shrink-0">
                 <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/black-paper.png')]"></div>
                 <div className="relative z-10">
-                  <h3 className="text-2xl font-headline font-bold">{editingProduct ? 'Edit Menu Kopi' : 'Tambah Menu Baru'}</h3>
-                  <p className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-60 mt-1">Lengkapi Detail Produk</p>
+                  <h3 className="text-xl md:text-2xl font-headline font-bold">{editingProduct ? 'Edit Menu Kopi' : 'Tambah Menu Baru'}</h3>
+                  <p className="text-[9px] uppercase tracking-[0.3em] font-bold opacity-60 mt-0.5">Lengkapi Detail Produk</p>
                 </div>
-                <button onClick={() => setIsModalOpen(false)} className="relative z-10 h-10 w-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
-                  <span className="material-symbols-outlined">close</span>
+                <button onClick={() => setIsModalOpen(false)} className="relative z-10 h-9 w-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+                  <span className="material-symbols-outlined text-lg">close</span>
                 </button>
              </div>
              
-             <form onSubmit={handleSave} className="p-6 md:p-8 space-y-6 bg-stone-50">
+             <form onSubmit={handleSave} className="p-6 md:p-7 space-y-5 bg-stone-50 overflow-y-auto custom-scrollbar">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Nama Menu */}
                   <div className="space-y-2">
