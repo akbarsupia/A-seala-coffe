@@ -190,7 +190,9 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
 const Antigravity: React.FC<AntigravityProps> = props => {
   // Simple check for mobile to reduce count for better performance
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const optimizedCount = isMobile ? Math.min(props.count || 100, 80) : (props.count || 250);
+  const optimizedCount = isMobile 
+    ? Math.min(props.count || 80, 50) 
+    : Math.min(props.count || 250, 120);
 
   return (
     <Canvas camera={{ position: [0, 0, 50], fov: 35 }} dpr={[1, 1.5]}>
