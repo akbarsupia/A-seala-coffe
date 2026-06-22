@@ -270,17 +270,17 @@ export default function ReservePage() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">{t('reserve.guests')}</label>
-                  <select value={formData.guests} onChange={e => setFormData({...formData, guests: e.target.value})} className="w-full bg-stone-50 border-stone-100 border-2 rounded-2xl p-4 text-sm focus:border-primary outline-none transition-all cursor-pointer">
+                  <select value={formData.guests} onChange={e => setFormData({...formData, guests: e.target.value})} className="w-full bg-stone-50 border-stone-100 border-2 rounded-2xl p-4 text-sm focus:border-primary outline-none transition-all cursor-pointer appearance-none">
                     {[1, 2, 3, 4, 5, 6].map(n => <option key={n} value={n}>{n} {t('reserve.guests')}</option>)}
                   </select>
                 </div>
                 <div className="space-y-2">
                   <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">{t('reserve.date')}</label>
-                  <input type="date" required min={new Date().toISOString().split('T')[0]} value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-stone-50 border-stone-100 border-2 rounded-2xl p-4 text-sm focus:border-primary outline-none transition-all" />
+                  <input type="date" required min={new Date().toISOString().split('T')[0]} value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-stone-50 border-stone-100 border-2 rounded-2xl p-4 text-sm focus:border-primary outline-none transition-all appearance-none" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">{t('reserve.time')}</label>
-                  <input type="time" required value={formData.time} onChange={e => setFormData({...formData, time: e.target.value})} className="w-full bg-stone-50 border-stone-100 border-2 rounded-2xl p-4 text-sm focus:border-primary outline-none transition-all" />
+                  <input type="time" required value={formData.time} onChange={e => setFormData({...formData, time: e.target.value})} className="w-full bg-stone-50 border-stone-100 border-2 rounded-2xl p-4 text-sm focus:border-primary outline-none transition-all appearance-none" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[11px] font-bold text-stone-500 uppercase tracking-widest pl-1">{t('reserve.note')}</label>
