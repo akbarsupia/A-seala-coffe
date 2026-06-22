@@ -33,6 +33,21 @@ export default function ReservePage() {
   const [isSlotFull, setIsSlotFull] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const generateWhatsAppLink = (data: typeof formData) => {
+    const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '6281386176205';
+    const spaceNames = {
+      ethereal: lang === 'id' ? 'Area Sofa Indoor' : 'Ethereal Lounge',
+      ancient: lang === 'id' ? 'Pojok Tenang (Co-working)' : 'Ancient Library',
+      glasshouse: lang === 'id' ? 'Teras Kaca (Semi Outdoor)' : 'The Glasshouse'
+    };
+    const spaceName = spaceNames[selectedSpace] || selectedSpace;
+    const message = lang === 'id' 
+      ? `Halo A'seala Coffee, saya ingin konfirmasi booking tempat:\n\n*Nama:* ${data.name}\n*Email:* ${data.email}\n*Area:* ${spaceName}\n*Jumlah Tamu:* ${data.guests} Orang\n*Tanggal:* ${data.date}\n*Waktu:* ${data.time}\n*Catatan:* ${data.note || '-'}\n\nMohon konfirmasi pesanan saya. Terima kasih!`
+      : `Hello A'seala Coffee, I would like to confirm my table booking:\n\n*Name:* ${data.name}\n*Email:* ${data.email}\n*Area:* ${spaceName}\n*Guests:* ${data.guests} People\n*Date:* ${data.date}\n*Time:* ${data.time}\n*Note:* ${data.note || '-'}\n\nPlease confirm my reservation. Thank you!`;
+    
+    return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  };
+
   React.useEffect(() => {
     if (!loading && !user) {
       router.push('/login?redirect=/reserve');
@@ -137,10 +152,6 @@ export default function ReservePage() {
       });
 
       setSuccess(true);
-      setTimeout(() => {
-        setSuccess(false);
-        router.push('/');
-      }, 5000);
     } catch (err) {
       console.error('Reservation error:', err);
       alert('Maaf, pesanan gagal diproses.');
@@ -152,12 +163,39 @@ export default function ReservePage() {
   return (
     <>
       {success && (
-        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] animate-in slide-in-from-top-12 fade-in duration-500 w-[90%] max-w-[400px]">
-          <div className="bg-surface border border-stone-200/50 shadow-2xl rounded-2xl p-4 flex items-start gap-4">
-            <span className="material-symbols-outlined text-green-600 text-3xl mt-1">check_circle</span>
-            <div>
-              <h4 className="font-bold text-stone-800 text-sm mb-1">Berhasil Dipesan! 🎉</h4>
-              <p className="text-stone-600 text-xs font-medium leading-relaxed">Terima kasih, tempat duduk Anda telah diamankan. Silakan cek email masuk untuk melihat detail bukti reservasi Anda.</p>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-white border border-stone-100 shadow-2xl rounded-3xl p-8 max-w-md w-full text-center animate-in zoom-in-95 duration-300">
+            <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span className="material-symbols-outlined text-green-600 text-4xl">check_circle</span>
+            </div>
+            <h3 className="text-2xl font-bold font-headline text-stone-800 mb-2">
+              {lang === 'id' ? 'Reservasi Berhasil! 🎉' : 'Reservation Successful! 🎉'}
+            </h3>
+            <p className="text-stone-600 text-sm mb-6 leading-relaxed font-body">
+              {lang === 'id'
+                ? 'Terima kasih, tempat Anda telah berhasil dipesan. Silakan klik tombol di bawah untuk konfirmasi pesanan Anda langsung ke WhatsApp kami.'
+                : 'Thank you, your table has been successfully booked. Please click the button below to confirm your reservation directly to our WhatsApp.'}
+            </p>
+
+            <div className="space-y-3">
+              <a
+                href={generateWhatsAppLink(formData)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-sm uppercase tracking-wider transition-all shadow-lg shadow-green-500/20 active:scale-[0.98]"
+              >
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.968C16.574 1.97 14.101.945 11.472.945 6.037.945 1.61 5.316 1.606 10.748c-.001 1.674.444 3.306 1.29 4.732l-.99 3.615 3.701-.97c1.39.816 2.933 1.229 4.45 1.229zm9.053-6.438c-.3-.15-1.777-.875-2.05-.974-.275-.098-.475-.148-.675.15-.2.3-.775.974-.95 1.173-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.485-.89-.795-1.49-1.778-1.665-2.078-.175-.3-.018-.462.13-.61.135-.133.3-.35.45-.525.15-.175.2-.3.3-.5s.05-.375-.025-.525c-.075-.15-.675-1.625-.925-2.225-.244-.582-.49-.5-.675-.51-.175-.008-.375-.01-.575-.01-.2 0-.525.075-.8 1.05-.275 1.05-.725 2.1-.975 2.625-.25.525-.5 1.1-.075 1.575.4.45 1.3 1.45 2.825 2.1.825.35 1.5.575 2.025.75.825.26 1.575.225 2.162.138.658-.098 1.777-.725 2.025-1.425.25-.7.25-1.3.175-1.425-.075-.125-.275-.2-.575-.35z" />
+                </svg>
+                {lang === 'id' ? 'Konfirmasi via WhatsApp' : 'Confirm via WhatsApp'}
+              </a>
+              <button
+                type="button"
+                onClick={() => router.push('/')}
+                className="w-full py-4 px-6 rounded-2xl border border-stone-200 hover:bg-stone-50 text-stone-700 font-bold text-sm uppercase tracking-wider transition-all active:scale-[0.98]"
+              >
+                {lang === 'id' ? 'Kembali ke Beranda' : 'Back to Home'}
+              </button>
             </div>
           </div>
         </div>

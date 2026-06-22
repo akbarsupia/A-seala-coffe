@@ -15,14 +15,14 @@ export default function CartDrawer() {
       {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-[55] bg-black/20 backdrop-blur-sm"
+          className="fixed inset-0 z-[140] bg-black/20 backdrop-blur-sm"
           onClick={closeCart}
         />
       )}
 
       {/* Drawer */}
       <aside
-        className={`fixed inset-y-0 right-0 w-[380px] z-[60] bg-stone-50 rounded-l-[2.5rem] shadow-2xl shadow-orange-900/10 transition-transform duration-500 ease-in-out flex flex-col ${
+        className={`fixed inset-y-0 right-0 w-[380px] z-[150] bg-stone-50 rounded-l-[2.5rem] shadow-2xl shadow-orange-900/10 transition-transform duration-500 ease-in-out flex flex-col ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
